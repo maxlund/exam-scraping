@@ -12,7 +12,7 @@ def get_exam_results(course_code):
     try:
         res.raise_for_status()
     except Exception as e:
-        print(course_code + " raised an exception %s" % (e))
+        print("{} raised an exception: {}".format(course_code, e))
 
     soup = bs.BeautifulSoup(res.text, "lxml")
 
