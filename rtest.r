@@ -20,8 +20,10 @@ tmp = data.frame(
 
 num_fail = apply(tmp, 1, function(x) {return (x["U"] / sum(x))})
 sorted = sort(num_fail)
+plot(sorted)
+
+print(num_fail["TSIT02"])
+
 
 top_ten = sorted[(length(sorted)-11):length(sorted)-1]
-print(
-plot(top_ten)
-
+print(top_ten)
