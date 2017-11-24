@@ -21,7 +21,7 @@ def get_exam_results(course_code):
 
     # include only course's exam results
     exams = list()
-    [exams.append(res.split("\n")) for res in tables[1:] if "tentamen" in res]
+    [exams.append(res.split("\n")) for res in tables[1:] if "tentamen" in res.lower()]
 
     # set up dict for all exam results
     all_dates = dict()
@@ -34,7 +34,7 @@ def get_exam_results(course_code):
         date = ex[0][-10:]
 
         for res in results:
-            if len(res) < 2 or res[0] not in "U345":
+            if len(res) < 2 or res[0] not in "U1345":
                 valid = False
 
         # insert exam results if valid
@@ -43,22 +43,28 @@ def get_exam_results(course_code):
 
     return all_dates
 
+
 all_codes = pickle.load(open("course_codes.p", "rb"))
 
+# get results of all exams for every every course listed
 all_results = dict()
 for institution, levels in all_codes.items():
     all_results[institution] = dict()
     for level, courses in levels.items():
         all_results[institution][level] = dict()
         if len(courses) > 0:
-            print("processing {} courses at level {}".format(institution, level))
+            print("Processing {} courses at level {}".format(institution, level))
             for course_code in courses:
                 all_results[institution][level][course_code] = get_exam_results(course_code)
 
+print("Done scraping exam results! Going to write to 'exam_results.csv'")
+
+# set up csv file with headers
 f = open("exam_results.csv", "wt")
 writer = csv.writer(f)
 writer.writerow(("id", "institution", "course_code", "level", "date", "U", "3", "4", "5"))
 
+# go through all results and write to our csv file
 id = 1
 result = dict()
 for inst, levels in all_results.items():
@@ -67,10 +73,12 @@ for inst, levels in all_results.items():
             for date, grades in dates.items(): # a specific exam processed here
                 result = {"U": 0, "3": 0, "4": 0, "5": 0}
                 for grade, num_of_people in grades.items():
-                    result[grade] = num_of_people
+                    if grade == "1":
+                        result["U"] = num_of_people
+                    else:
+                        result[grade] = num_of_people
                 writer.writerow((id, inst, code, level, date, result["U"], result["3"], result["4"], result["5"]))
                 id += 1
-
 f.close()
 
 print("Processed {} exams written to 'exam_results.csv'".format(id))
