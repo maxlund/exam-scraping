@@ -6,25 +6,19 @@ data = read.csv("~/python/exam-scraping/exam_results.csv", header = TRUE,
 get_pie=function(name)
 {
   vals = c(inst[name, ]$U, inst[name, ]$X3, inst[name, ]$X4, inst[name, ]$X5)
-  
   pie = plot_ly(inst[name, ], labels = c("U", "3", "4", "5"), values = vals, type = 'pie') %>%
-    layout(title = paste("Grade distribution in", name, sep=" "),
-           showlegend = TRUE,
-           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+        layout(title = paste("Grade distribution in", name, sep=" "),
+               showlegend = TRUE,
+               xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+               yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   return (pie)
 }
 
-inst.u = tapply(c(data$U), data$institution, FUN=sum)
-inst.3 = tapply(c(data$X3), data$institution, FUN=sum)
-inst.4 = tapply(c(data$X4), data$institution, FUN=sum)
-inst.5 = tapply(c(data$X5), data$institution, FUN=sum)
-
 inst = data.frame(
-  U = institution.u,
-  X3 = institution.3,
-  X4 = institution.4,
-  X5 = institution.5
+  U = tapply(c(data$U), data$institution, FUN=sum),
+  X3 = tapply(c(data$X3), data$institution, FUN=sum),
+  X4 = tapply(c(data$X4), data$institution, FUN=sum),
+  X5 = tapply(c(data$X5), data$institution, FUN=sum)
 )
 
 inst.fractions = data.frame(
