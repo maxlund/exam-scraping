@@ -6,7 +6,8 @@ data = read.csv("../exam_results.csv", header = TRUE,
 get_pie=function(name)
 {
   vals = c(courses[name, ]$U, courses[name, ]$X3, courses[name, ]$X4, courses[name, ]$X5)
-  pie = plot_ly(courses[name, ], labels = c("U", "3", "4", "5"), values = vals, type = 'pie') %>%
+  pie = plot_ly(courses[name, ], labels = c("U", "3", "4", "5"), values = vals, type = 'pie',
+                marker = list(colors=c("#E41A1C", "#FF7F00", "#377EB8", "#33A02C"))) %>%
         layout(title = paste("Grade distribution in", name, sep=" "),
                showlegend = TRUE,
                xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
