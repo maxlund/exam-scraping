@@ -1,4 +1,6 @@
-data = read.csv("~/python/exam-scraping/exam_results.csv", header = TRUE, 
+library(plotly)
+
+data = read.csv("../exam_results.csv", header = TRUE, 
                 sep = ",", dec = ".", fill = TRUE)
 
 get_pie=function(name)
@@ -105,20 +107,20 @@ ida = data.frame(
   X5 = tapply(c(ida_$X5), ida_$course_code, FUN=sum)
 )
 
-# get the grade 5 ratio of each IDA course
+# get the grade U ratio of each IDA course
 ida.fail = apply(ida, 1, function(x) return (x["U"] / sum(x)))
 # get the grade 5 ratio of each IDA course
 ida.success = apply(ida, 1, function(x) return (x["X5"] / sum(x)))
 
 # ten courses with highest ratio of U's
 ida.fail = sort(ida.fail)
-ida.top_fail = ida.fail[(length(ida.fail)-10):length(ida.fail)-1]
+ida.top_fail = ida.fail[(length(ida.fail)-10):length(ida.fail)]
 cat("\nTop ten IDA courses with highest ratio of U's:\n")
 print(ida.top_fail)
 
 # ten courses highest ratio of 5's
 ida.success = sort(ida.success)
-ida.top_success = ida.success[(length(ida.success)-11):length(ida.success)-1]
+ida.top_success = ida.success[(length(ida.success)-10):length(ida.success)]
 cat("\nTop ten IDA courses highest ratio of 5's:\n")
 print(ida.top_success)
 

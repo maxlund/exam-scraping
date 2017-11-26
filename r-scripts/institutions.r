@@ -1,6 +1,6 @@
 library(plotly)
 
-data = read.csv("~/python/exam-scraping/exam_results.csv", header = TRUE, 
+data = read.csv("../exam_results.csv", header = TRUE, 
                 sep = ",", dec = ".", fill = TRUE)
 
 get_pie=function(name)
