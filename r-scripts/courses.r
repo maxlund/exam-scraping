@@ -1,14 +1,14 @@
 library(plotly)
 
-data = read.csv("../exam_results.csv", header = TRUE, 
+data = read.csv("exam_results.csv", header = TRUE, 
                 sep = ",", dec = ".", fill = TRUE)
 
-get_pie=function(name)
+get_pie=function(name, desc = "")
 {
   vals = c(courses[name, ]$U, courses[name, ]$X3, courses[name, ]$X4, courses[name, ]$X5)
   pie = plot_ly(courses[name, ], labels = c("U", "3", "4", "5"), values = vals, type = 'pie',
                 marker = list(colors=c("#E41A1C", "#FF7F00", "#377EB8", "#33A02C"))) %>%
-        layout(title = paste("Grade distribution in", name, sep=" "),
+        layout(title = paste("Grade distribution in", name, desc, sep=" "),
                showlegend = TRUE,
                xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
                yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
@@ -135,3 +135,17 @@ TDDD38
 TDDD07 = get_pie("TDDD07") # TDDD07:Realtidssystem 6.0 hp
 TDDD07
 
+TBMI26 = get_pie("TBMI26", "Neural Networks and Learning Systems") # 	Neural Networks and Learning Systems
+TBMI26
+TDDB68 = get_pie("TDDB68", "Concurrent Programming and Operating Systems") # 	Concurrent Programming and Operating Systems
+TDDB68
+TDDD38 = get_pie("TDDD38", "Advanced Programming in C++") #  Advanced Programming in C++
+TDDD41 = get_pie("TDDD41", "Data Mining - Clustering and Association Analysis") # 	Data Mining - Clustering and Association Analysis
+TDDD41
+TDDD48 = get_pie("TDDD48", "Automated Planning") # 	Automated Planning
+TDDD48
+TDDE31 = get_pie("TDDE31", "Big Data Analytics") # 	Big Data Analytics
+TDDE31
+
+TAIU10 = get_pie("TAIU10", "Analys i en variabel")
+TAIU10

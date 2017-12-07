@@ -1,13 +1,14 @@
 library(plotly)
 
-data = read.csv("../exam_results.csv", header = TRUE, 
+data = read.csv("exam_results.csv", header = TRUE, 
                 sep = ",", dec = ".", fill = TRUE)
 
 get_pie=function(name)
 {
   vals = c(inst[name, ]$U, inst[name, ]$X3, inst[name, ]$X4, inst[name, ]$X5)
   pie = plot_ly(inst[name, ], labels = c("U", "3", "4", "5"), values = vals, type = 'pie', 
-                marker = list(colors=c("#E41A1C", "#FF7F00", "#377EB8", "#33A02C"))) %>%
+                marker = list(colors=c("#E41A1C", "#FF7F00", "#377EB8", "#33A02C"),
+                              line = list(color = '#FFFFFF', width = 1))) %>%
         layout(title = paste("Grade distribution in", name, sep=" "),
                showlegend = TRUE,
                xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
@@ -76,4 +77,3 @@ IEI
 cat("\nIKK has had a total of one person failing an exam since 2007. This happend on 2017-10-20 in the course TRTE17: Visuell kultur och designhistoria.
     \nAll exam results within IKK:\n")
 print(data[which(data$institution=="IKK"), ])
-
