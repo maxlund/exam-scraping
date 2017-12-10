@@ -59,7 +59,7 @@ def get_course_name(course_code):
         course_name = " ".join(course_name).strip()
         return course_name
     except:
-        print("********** {} ********* EXCEPTION THROWN HERE".format(course_code))
+        print("*** Course: {} is invalid ***".format(course_code))
         return ""
 
 all_codes = pickle.load(open("course_codes.p", "rb"))
