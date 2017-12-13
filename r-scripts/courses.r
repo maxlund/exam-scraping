@@ -1,6 +1,6 @@
 library(plotly)
 
-data = read.csv("exam_results.csv", header = TRUE, 
+data = read.csv("../exam_results.csv", header = TRUE, 
                 sep = ",", dec = ".", fill = TRUE)
 
 get_pie=function(name, desc = "")
@@ -88,16 +88,16 @@ legend("bottomright",c("Observ.","Predicted"),
        col=c("deepskyblue4","red"), lwd=3)
 
 # plots for some of the courses with highest ratio of U's
-TATA68 = get_pie("TATA68") # TATA68:Matematisk grundkurs 6.0 hp
-TATA68
-TFYA35 = get_pie("TFYA35") # TFYA35:Molekylfysik 6.0 hp
-TFYA35
-TATA43 = get_pie("TATA43") # TATA43:Flervariabelanalys 8.0 hp
-TATA43
-
-# ~94% grade 5 in this course:
-NBID61 = get_pie("NBID61") # NBID61:Primate Ethology 9.0 hp
-NBID61
+# TATA68 = get_pie("TATA68") # TATA68:Matematisk grundkurs 6.0 hp
+# TATA68
+# TFYA35 = get_pie("TFYA35") # TFYA35:Molekylfysik 6.0 hp
+# TFYA35
+# TATA43 = get_pie("TATA43") # TATA43:Flervariabelanalys 8.0 hp
+# TATA43
+# 
+# # ~94% grade 5 in this course:
+# NBID61 = get_pie("NBID61") # NBID61:Primate Ethology 9.0 hp
+# NBID61
 
 # subset IDA courses
 ida_ = data[which(data$institution == "IDA"), ]
@@ -125,27 +125,26 @@ ida.top_success = ida.success[(length(ida.success)-10):length(ida.success)]
 cat("\nTop ten IDA courses highest ratio of 5's:\n")
 print(ida.top_success)
 
-TDDC75 = get_pie("TDDC75") # TDDC75:Diskreta strukturer 8.0 hp
-TDDC75 = get_pie("TDDD74") # TDDD74:Databaser för bioinformatik 6.0 hp
-TDDD08 = get_pie("TDDD08") # TDDD08:Logikprogrammering 6.0 hp
-TDDD65 = get_pie("TDDD65") # TDDD65:Introduction to the Theory of Computation 6.0 hp
-TDDD65
-TDDD38 = get_pie("TDDD38") # TDDD38:Avancerad programmering i C++ 6.0 hp
-TDDD38
-TDDD07 = get_pie("TDDD07") # TDDD07:Realtidssystem 6.0 hp
-TDDD07
+# TDDC75 = get_pie("TDDC75") # TDDC75:Diskreta strukturer 8.0 hp
+# TDDC75 = get_pie("TDDD74") # TDDD74:Databaser för bioinformatik 6.0 hp
+# TDDD08 = get_pie("TDDD08") # TDDD08:Logikprogrammering 6.0 hp
+# TDDD65 = get_pie("TDDD65") # TDDD65:Introduction to the Theory of Computation 6.0 hp
+# TDDD65
+# TDDD38 = get_pie("TDDD38") # TDDD38:Avancerad programmering i C++ 6.0 hp
+# TDDD38
+# TDDD07 = get_pie("TDDD07") # TDDD07:Realtidssystem 6.0 hp
+# TDDD07
+# TBMI26 = get_pie("TBMI26", "Neural Networks and Learning Systems") # 	Neural Networks and Learning Systems
+# TBMI26
+# TDDB68 = get_pie("TDDB68", "Concurrent Programming and Operating Systems") # 	Concurrent Programming and Operating Systems
+# TDDB68
+# TDDD38 = get_pie("TDDD38", "Advanced Programming in C++") #  Advanced Programming in C++
+# TDDD41 = get_pie("TDDD41", "Data Mining - Clustering and Association Analysis") # 	Data Mining - Clustering and Association Analysis
+# TDDD41
+# TDDD48 = get_pie("TDDD48", "Automated Planning") # 	Automated Planning
+# TDDD48
+# TDDE31 = get_pie("TDDE31", "Big Data Analytics") # 	Big Data Analytics
+# TDDE31
+# TAIU10 = get_pie("TAIU10", "Analys i en variabel")
+# TAIU10
 
-TBMI26 = get_pie("TBMI26", "Neural Networks and Learning Systems") # 	Neural Networks and Learning Systems
-TBMI26
-TDDB68 = get_pie("TDDB68", "Concurrent Programming and Operating Systems") # 	Concurrent Programming and Operating Systems
-TDDB68
-TDDD38 = get_pie("TDDD38", "Advanced Programming in C++") #  Advanced Programming in C++
-TDDD41 = get_pie("TDDD41", "Data Mining - Clustering and Association Analysis") # 	Data Mining - Clustering and Association Analysis
-TDDD41
-TDDD48 = get_pie("TDDD48", "Automated Planning") # 	Automated Planning
-TDDD48
-TDDE31 = get_pie("TDDE31", "Big Data Analytics") # 	Big Data Analytics
-TDDE31
-
-TAIU10 = get_pie("TAIU10", "Analys i en variabel")
-TAIU10

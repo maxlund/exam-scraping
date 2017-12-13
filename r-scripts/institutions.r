@@ -1,6 +1,6 @@
 library(plotly)
 
-data = read.csv("exam_results.csv", header = TRUE, 
+data = read.csv("../exam_results.csv", header = TRUE, 
                 sep = ",", dec = ".", fill = TRUE)
 
 get_pie=function(name)
@@ -77,3 +77,4 @@ IEI
 cat("\nIKK has had a total of one person failing an exam since 2007. This happend on 2017-10-20 in the course TRTE17: Visuell kultur och designhistoria.
     \nAll exam results within IKK:\n")
 print(data[which(data$institution=="IKK"), ])
+
