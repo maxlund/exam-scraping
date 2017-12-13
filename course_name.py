@@ -2,7 +2,7 @@ import requests, pickle, csv
 import bs4 as bs
 
 
-# first run get_codes.py to generate the dict of LiTH course codes found in 'course_codes.p'
+# first run get_lith_codes.py to generate the dict of LiTH course codes found in 'course_codes.p'
 
 def get_course_name(course_code):
     res = requests.get("http://www4.student.liu.se/tentaresult/en/?kurskod=" + course_code + "&search=Search")

@@ -3,7 +3,7 @@
 import requests, pickle, csv
 import bs4 as bs
 
-# first run get_codes.py to generate the dict of course codes found in 'course_codes.p'
+# first run get_lith_codes.py to generate the dict of course codes found in 'course_codes.p'
 
 def get_exam_results(course_code):
 
