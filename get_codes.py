@@ -1,6 +1,8 @@
 import requests, pickle
 import bs4 as bs
 
+#### This scraper gets course codes from LiTH ####
+
 payload = {
     "-Maxrecords": "2500",
     "kp_programkod": "",

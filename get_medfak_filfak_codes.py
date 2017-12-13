@@ -1,6 +1,8 @@
 import requests, pickle
 import bs4 as bs
 
+#### This scraper gets course codes for MedFak and FilFak ####
+
 # MedFak and FilFak doesn't have a service where you can search for all courses that are given by the faculty.
 # This scraper searches all the upcoming exams and filters out the course codes, but the set will be incomplete
 # since the exams listed are only ones 2 months into the future.
