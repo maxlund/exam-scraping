@@ -97,4 +97,4 @@ print("Total courses gathered: {}".format(total))
 print("Dumping to pickle object 'course_codes.p', a dictionary of dictionaries holding sets.\n"
       "The format is: {'institution': {'course level': <set of course codes>} }")
 
-pickle.dump(all_codes, open("course_codes_total.p", "wb"))
+pickle.dump(all_codes, open("course_codes.p", "wb"))

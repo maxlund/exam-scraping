@@ -21,7 +21,8 @@ def get_exam_results(course_code):
 
     # include only course's exam results
     exams = list()
-    [exams.append(res.split("\n")) for res in tables[1:] if "tentamen" in res.lower()]
+    estrs = ["tentamen", "tenta"]
+    [exams.append(res.split("\n")) for res in tables[1:] if any(e in res.lower() for e in estrs)]
 
     # set up dict for all exam results
     all_dates = dict()
@@ -62,7 +63,7 @@ def get_course_name(course_code):
         print("*** Course: {} is invalid ***".format(course_code))
         return ""
 
-all_codes = pickle.load(open("course_codes.p", "rb"))
+all_codes = pickle.load(open("data/course_codes.p", "rb"))
 
 # get results of all exams for every every course listed
 all_results = dict()
@@ -75,11 +76,11 @@ for institution, levels in all_codes.items():
             for course_code in courses:
                 all_results[institution][level][course_code] = get_exam_results(course_code)
 
-pickle.dump(all_results, open("all_results.p", "wb"))
+pickle.dump(all_results, open("data/all_results.p", "wb"))
 print("Done scraping exam results! Going to write to 'exam_results.csv'")
 
 # set up csv file with headers
-f = open("exam_results.csv", "wt")
+f = open("data/exam_results.csv", "wt")
 writer = csv.writer(f)
 writer.writerow(("id", "institution", "course_code", "course_name", "level", "date", "U", "3", "4", "5"))
 
