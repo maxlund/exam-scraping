@@ -48,12 +48,14 @@ institutions = {
 
 levels = {"G1", "G2", "A"}
 
+url_swe = "http://kdb-5.liu.se/liu/lith/studiehandboken/search_10/search_response_sv.lasso"
+url_eng = "http://kdb-5.liu.se/liu/lith/studiehandboken/search_17/search_response_sv.lasso"
 
-def get_course_codes(institution, level):
+def get_course_codes(institution, level, url_str):
     payload["kp_institution"] = institution
     payload["kp_utb_niva"] = level
 
-    res = requests.post(url="http://kdb-5.liu.se/liu/lith/studiehandboken/search_17/search_response_sv.lasso",
+    res = requests.post(url=url_str,
                         data=payload)
     try:
         res.raise_for_status()
@@ -83,7 +85,8 @@ for inst in institutions:
     inst_dict = dict()
     for lev in levels:
         codes = set()
-        [codes.add(c) for c in get_course_codes(inst, lev)]
+        [codes.add(c) for c in get_course_codes(inst, lev, url_eng)]
+        [codes.add(c) for c in get_course_codes(inst, lev, url_swe)]
         inst_dict[lev] = codes
         total += len(codes)
         print("Gathered {} codes from {} at level {}.".format(len(codes), inst, lev))
@@ -92,6 +95,6 @@ for inst in institutions:
 
 print("Total courses gathered: {}".format(total))
 print("Dumping to pickle object 'course_codes.p', a dictionary of dictionaries holding sets.\n"
-      "The format is: {'institution': {'course level': <set of course names>} }")
+      "The format is: {'institution': {'course level': <set of course codes>} }")
 
-pickle.dump(all_codes, open("course_codes.p", "wb"))
+pickle.dump(all_codes, open("course_codes_total.p", "wb"))
